@@ -128,11 +128,14 @@ export default {
       return _color.rColor(color)
     },
     close(event,con){
+      console.log('开始关闭...');
       if(con){
         if(event.target.className.indexOf('vs-popup--background')!=-1 && closeOnClickModal){
+          console.log('点击遮罩关闭');
           this.$emit('update:active',false)
           this.$emit('close', false)
         } else if(event.srcElement == this.$refs.btnclose.$el){
+          console.log('点击关闭按钮关闭');
           this.$emit('update:active',false)
           this.$emit('close', false)
         }
