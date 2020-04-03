@@ -49,6 +49,10 @@ import _color from '../../utils/color.js'
 export default {
   name:'VsPopup',
   props:{
+    closeOnClickModal:{
+      type:Boolean,
+      default:false
+    },
     color:{
       default:'primary',
       type:String
@@ -125,12 +129,10 @@ export default {
     },
     close(event,con){
       if(con){
-        if(event.target.className
-            && event.target.className.indexOf
-            && event.target.className.indexOf('vs-popup--background')!=-1){
+        if(event.target.className.indexOf('vs-popup--background')!=-1 && closeOnClickModal){
           this.$emit('update:active',false)
           this.$emit('close', false)
-        } else if(!this.buttonCloseHidden && event.srcElement == this.$refs.btnclose.$el){
+        } else if(event.srcElement == this.$refs.btnclose.$el){
           this.$emit('update:active',false)
           this.$emit('close', false)
         }
